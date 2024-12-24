@@ -1,0 +1,28 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "710000",
+      "properties": {"id": "710000", "cp": [121.509062, 25.044332], "name": "台湾", "childNum": 6},
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          ["...省略具体坐标..."]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "130000",
+      "properties": {"id": "130000", "cp": [114.502461, 38.045474], "name": "河北", "childNum": 3},
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          ["...省略具体坐标..."]
+        ]
+      }
+    }
+    // ... 其他省份数据
+  ]
+} 

@@ -5,7 +5,6 @@ import viteCompression from 'vite-plugin-compression'
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
-import viteImagemin from 'vite-plugin-imagemin'
 // import { visualizer } from 'rollup-plugin-visualizer'
 
 export default ({ mode }) => {
@@ -22,6 +21,7 @@ export default ({ mode }) => {
     },
     base: VITE_BASE_URL,
     server: {
+      host: 'localhost',
       port: parseInt(VITE_PORT),
       proxy: {
         '/api': {
@@ -29,8 +29,7 @@ export default ({ mode }) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
-      },
-      host: true
+      }
     },
     // 路径别名
     resolve: {
@@ -102,36 +101,36 @@ export default ({ mode }) => {
         threshold: 10240, // 只有大小大于该值的资源会被处理 10240B = 10KB
         deleteOriginFile: false // 压缩后是否删除原文件
       }),
-      // 图片压缩
-      viteImagemin({
-        verbose: true, // 是否在控制台输出压缩结果
-        // 图片压缩配置
-        gifsicle: {
-          optimizationLevel: 7,
-          interlaced: false
-        },
-        optipng: {
-          optimizationLevel: 7
-        },
-        mozjpeg: {
-          quality: 20
-        },
-        pngquant: {
-          quality: [0.8, 0.9],
-          speed: 4
-        },
-        svgo: {
-          plugins: [
-            {
-              name: 'removeViewBox'
-            },
-            {
-              name: 'removeEmptyAttrs',
-              active: false
-            }
-          ]
-        }
-      })
+      // 暂时注释掉 imagemin 配置
+      // viteImagemin({
+      //   verbose: true, // 是否在控制台输出压缩结果
+      //   // 图片压缩配置
+      //   gifsicle: {
+      //     optimizationLevel: 7,
+      //     interlaced: false
+      //   },
+      //   optipng: {
+      //     optimizationLevel: 7
+      //   },
+      //   mozjpeg: {
+      //     quality: 20
+      //   },
+      //   pngquant: {
+      //     quality: [0.8, 0.9],
+      //     speed: 4
+      //   },
+      //   svgo: {
+      //     plugins: [
+      //       {
+      //         name: 'removeViewBox'
+      //       },
+      //       {
+      //         name: 'removeEmptyAttrs',
+      //         active: false
+      //       }
+      //     ]
+      //   }
+      // })
     ],
     // 预加载项目必需的组件
     optimizeDeps: {
